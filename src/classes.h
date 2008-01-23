@@ -8,6 +8,7 @@
 #include "DataFormats/TauReco/interface/PFTau.h"
 #include "DataFormats/TauReco/interface/CaloTauDiscriminatorByIsolation.h"
 #include "DataFormats/TauReco/interface/PFTauDiscriminatorByIsolation.h"
+#include "DataFormats/TauReco/interface/Tau.h"
 
 #include <vector>
 #include <map>
@@ -70,5 +71,12 @@ namespace {
     edm::Wrapper<reco::PFTauDiscriminatorByIsolation>           pftdi_w;     
     std::pair<reco::PFTauRef, int>                              pftdi_p;
     std::vector<std::pair<reco::PFTauRef, int> >                pftdi_v;    
+  
+    std::vector<reco::Tau> v1;
+    edm::Wrapper<std::vector<reco::Tau> > c1;
+    edm::Ref<std::vector<reco::Tau> > r1;
+    edm::RefProd<std::vector<reco::Tau> > rp1;
+    edm::RefVector<std::vector<reco::Tau> > rv1;
+    edm::reftobase::Holder<reco::Candidate, reco::TauRef> rb1;
   }
 }
