@@ -74,15 +74,23 @@
   <class name="reco::PFTauDiscriminatorByIsolationRefProd"/>
   <class name="reco::PFTauDiscriminatorByIsolationRefVector"/>
   <class name="edm::Wrapper<reco::PFTauDiscriminatorByIsolation>"/>
+  <class name="reco::PFTauDiscriminatorBase">
+    <field name="transientVector_" transient="true"/>
+    <field name="fixed_" transient="true"/>
+  </class>
+  <class name="reco::PFTauDiscriminator">
+    <field name="transientVector_" transient="true"/>
+    <field name="fixed_" transient="true"/>
+  </class>
+  <class name="reco::PFTauDiscriminatorRef"/>
+  <class name="reco::PFTauDiscriminatorRefProd"/>
+  <class name="reco::PFTauDiscriminatorRefVector"/>
+  <class name="edm::Wrapper<reco::PFTauDiscriminator>"/>
   
   <class name="std::pair<reco::PFTauRef, int>"/>
   <class name="std::vector<std::pair<reco::PFTauRef, int> >" />
 
-  <class name="reco::Tau"/>
-  <class name="std::vector<reco::Tau>"/>
-  <class name="edm::Wrapper<std::vector<reco::Tau> >"/>
-  <class name="edm::Ref<std::vector<reco::Tau>,reco::Tau,edm::refhelper::FindUsingAdvance<std::vector<reco::Tau>,reco::Tau> >"/>
-  <class name="edm::RefProd<std::vector<reco::Tau> >"/>
-  <class name="edm::RefVector<std::vector<reco::Tau>,reco::Tau,edm::refhelper::FindUsingAdvance<std::vector<reco::Tau>,reco::Tau> >"/>
-  <class name="edm::reftobase::Holder<reco::Candidate, edm::Ref<std::vector<reco::Tau>,reco::Tau,edm::refhelper::FindUsingAdvance<std::vector<reco::Tau>,reco::Tau> > >" />
+  <class name="std::pair<reco::PFTauRef, float>"/>
+  <class name="std::vector<std::pair<reco::PFTauRef, float> >" />
+
 </lcgdict>
