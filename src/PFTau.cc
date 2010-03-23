@@ -6,45 +6,74 @@ using namespace std;
 
 
 PFTau::PFTau(){
+  PFCandidateRef pfLead;
+  TrackRef tmp;
+  leadPFChargedHadrCand_=pfLead;
+  leadPFNeutralCand_=pfLead;
+  leadPFCand_=pfLead;
+  leadPFChargedHadrCandsignedSipt_=NAN;
+  
+  PFCandidateRefVector pfTmp;
+  selectedSignalPFChargedHadrCands_=pfTmp;
+  selectedSignalPFNeutrHadrCands_=pfTmp;
+  selectedSignalPFGammaCands_=pfTmp;
 
-    leadPFChargedHadrCandsignedSipt_=NAN;
-    isolationPFChargedHadrCandsPtSum_=NAN;
-    isolationPFGammaCandsEtSum_=NAN;
-    maximumHCALPFClusterEt_=NAN;
-    emFraction_ = NAN;
-    hcalTotOverPLead_ = NAN;
-    hcalMaxOverPLead_ = NAN;
-    hcal3x3OverPLead_ = NAN;
-    ecalStripSumEOverPLead_= NAN;
-    bremsRecoveryEOverPLead_ = NAN;
-    electronPreIDOutput_ = NAN;
-    electronPreIDDecision_= NAN;
-    
-    caloComp_ = NAN;
-    segComp_ = NAN;
-    muonDecision_ = NAN;
+  selectedIsolationPFChargedHadrCands_=pfTmp;
+  selectedIsolationPFNeutrHadrCands_=pfTmp;
+  selectedIsolationPFGammaCands_=pfTmp;
+
+  isolationPFChargedHadrCandsPtSum_=NAN;
+  isolationPFGammaCandsEtSum_=NAN;
+  maximumHCALPFClusterEt_=NAN;
+  emFraction_ = NAN;
+hcalTotOverPLead_ = NAN;
+hcalMaxOverPLead_ = NAN;
+hcal3x3OverPLead_ = NAN;
+ecalStripSumEOverPLead_= NAN;
+bremsRecoveryEOverPLead_ = NAN;
+electronPreIDTrack_ = tmp;
+electronPreIDOutput_ = NAN;
+electronPreIDDecision_= NAN;
+
+caloComp_ = NAN;
+segComp_ = NAN;
+muonDecision_ = NAN;
 }
 
 PFTau::PFTau(Charge q,const LorentzVector& p4,const Point& vtx) : BaseTau(q,p4,vtx){
+  PFCandidateRef pfLead;
+TrackRef tmp;
+  leadPFChargedHadrCand_=pfLead;
+  leadPFChargedHadrCandsignedSipt_=NAN;
+  leadPFNeutralCand_=pfLead;
+ leadPFCand_=pfLead;
+  
+  PFCandidateRefVector pfTmp;
+  selectedSignalPFChargedHadrCands_=pfTmp;
+  selectedSignalPFNeutrHadrCands_=pfTmp;
+  selectedSignalPFGammaCands_=pfTmp;
 
+  selectedIsolationPFChargedHadrCands_=pfTmp;
+  selectedIsolationPFNeutrHadrCands_=pfTmp;
+  selectedIsolationPFGammaCands_=pfTmp;
 
-    leadPFChargedHadrCandsignedSipt_=NAN;    
-    isolationPFChargedHadrCandsPtSum_=NAN;
-    isolationPFGammaCandsEtSum_=NAN;
-    maximumHCALPFClusterEt_=NAN;
-    
-    emFraction_ = NAN;
-    hcalTotOverPLead_ = NAN;
-    hcalMaxOverPLead_ = NAN;
-    hcal3x3OverPLead_ = NAN;
-    ecalStripSumEOverPLead_= NAN;
-    bremsRecoveryEOverPLead_ = NAN;
-      electronPreIDOutput_ = NAN;
-    electronPreIDDecision_= NAN;
-    
-    caloComp_ = NAN;
-    segComp_ = NAN;
-    muonDecision_ = NAN;
+  isolationPFChargedHadrCandsPtSum_=NAN;
+  isolationPFGammaCandsEtSum_=NAN;
+  maximumHCALPFClusterEt_=NAN;
+
+  emFraction_ = NAN;
+hcalTotOverPLead_ = NAN;
+hcalMaxOverPLead_ = NAN;
+hcal3x3OverPLead_ = NAN;
+ecalStripSumEOverPLead_= NAN;
+bremsRecoveryEOverPLead_ = NAN;
+electronPreIDTrack_ = tmp;
+electronPreIDOutput_ = NAN;
+electronPreIDDecision_= NAN;
+
+caloComp_ = NAN;
+segComp_ = NAN;
+muonDecision_ = NAN;
 }
 
 PFTau* PFTau::clone()const{return new PFTau(*this);}
@@ -53,7 +82,7 @@ PFTau* PFTau::clone()const{return new PFTau(*this);}
 
 const PFTauTagInfoRef& PFTau::pfTauTagInfoRef()const{return PFTauTagInfoRef_;}
 void PFTau::setpfTauTagInfoRef(const PFTauTagInfoRef x) {PFTauTagInfoRef_=x;}
-
+    
 const PFCandidateRef& PFTau::leadPFChargedHadrCand()const {return leadPFChargedHadrCand_;}   
 const PFCandidateRef& PFTau::leadPFNeutralCand()const {return leadPFNeutralCand_;}   
 const PFCandidateRef& PFTau::leadPFCand()const {return leadPFCand_;}   
@@ -112,120 +141,91 @@ void PFTau::setelectronPreIDTrack(const reco::TrackRef& x) {electronPreIDTrack_ 
 void PFTau::setelectronPreIDOutput(const float& x) {electronPreIDOutput_ = x;}
 void PFTau::setelectronPreIDDecision(const bool& x) {electronPreIDDecision_ = x;}
 
-/// chargedHadronEnergy 
-float PFTau::chargedHadronEnergy () const {return signalConeJetParameters_.mChargedHadronEnergy;}
-///  chargedHadronEnergyFraction
-float PFTau::chargedHadronEnergyFraction () const {return (alternatLorentzVect().energy()) ? chargedHadronEnergy () / alternatLorentzVect().energy() : -1.0;}
-/// neutralHadronEnergy
-float PFTau::neutralHadronEnergy () const {return signalConeJetParameters_.mNeutralHadronEnergy;}
-/// neutralHadronEnergyFraction
-float PFTau::neutralHadronEnergyFraction () const {return (alternatLorentzVect().energy()) ? neutralHadronEnergy () / alternatLorentzVect().energy() : -1.0;}
-/// chargedEmEnergy
-float PFTau::chargedEmEnergy () const {return signalConeJetParameters_.mChargedEmEnergy;}
-/// chargedEmEnergyFraction
-float PFTau::chargedEmEnergyFraction () const {return (alternatLorentzVect().energy()) ? chargedEmEnergy () / alternatLorentzVect().energy() : -1.0;}
-/// chargedMuEnergy
-float PFTau::chargedMuEnergy () const {return signalConeJetParameters_.mChargedMuEnergy;}
-/// chargedMuEnergyFraction
-float PFTau::chargedMuEnergyFraction () const {return (alternatLorentzVect().energy()) ? chargedMuEnergy () / alternatLorentzVect().energy() : -1.0;}
-/// neutralEmEnergy
-float PFTau::neutralEmEnergy () const {return signalConeJetParameters_.mNeutralEmEnergy;}
-/// neutralEmEnergyFraction
-float PFTau::neutralEmEnergyFraction () const {return (alternatLorentzVect().energy()) ? neutralEmEnergy () / alternatLorentzVect().energy() : -1.0;}
-/// chargedMultiplicity
-int PFTau::chargedMultiplicity () const {return signalConeJetParameters_.mChargedMultiplicity;}
-/// neutralMultiplicity
-int PFTau::neutralMultiplicity () const {return signalConeJetParameters_.mNeutralMultiplicity;}
-/// muonMultiplicity
-int PFTau::muonMultiplicity () const {return signalConeJetParameters_.mMuonMultiplicity;}
-
-void PFTau::setSpecific(const PFJet::Specific& input) { signalConeJetParameters_ = input; }
-const PFJet::Specific& PFTau::getSpecific() const {return signalConeJetParameters_;}
-
 bool PFTau::hasMuonReference()const{ // check if muon ref exists
-    if( leadPFChargedHadrCand_.isNull() ) return false;
-    else if( leadPFChargedHadrCand_.isNonnull() ){
-        reco::MuonRef muonRef = leadPFChargedHadrCand_->muonRef();
-        if( muonRef.isNull() )   return false;
-        else if( muonRef.isNonnull() ) return  true;
-    }
-    return false;
+if( leadPFChargedHadrCand_.isNull() ) return false;
+else if( leadPFChargedHadrCand_.isNonnull() ){
+reco::MuonRef muonRef = leadPFChargedHadrCand_->muonRef();
+if( muonRef.isNull() )   return false;
+else if( muonRef.isNonnull() ) return  true;
+}
+return false;
 }
 
 float PFTau::caloComp() const {return caloComp_;}
 float PFTau::segComp() const {return segComp_;}
 bool  PFTau::muonDecision() const {return muonDecision_;}
-void  PFTau::setCaloComp(const float& x) {caloComp_ = x;}
-void  PFTau::setSegComp (const float& x) {segComp_  = x;}
-void  PFTau::setMuonDecision(const bool& x) {muonDecision_ = x;}
+void PFTau::setCaloComp(const float& x) {caloComp_ = x;}
+void PFTau::setSegComp (const float& x) {segComp_  = x;}
+void PFTau::setMuonDecision(const bool& x) {muonDecision_ = x;}
+//
 
 
 CandidatePtr PFTau::sourceCandidatePtr( size_type i ) const {
-    if( i!=0 ) return CandidatePtr();
-    
-    const PFJetRef& pfJetRef = pfTauTagInfoRef()->pfjetRef();
-    return  refToPtr( pfJetRef );
+  if( i!=0 ) return CandidatePtr();
+  
+  const PFJetRef& pfJetRef = pfTauTagInfoRef()->pfjetRef();
+  return  refToPtr( pfJetRef );
 }
 
 
 bool PFTau::overlap(const Candidate& theCand)const{
-    const RecoCandidate* theRecoCand=dynamic_cast<const RecoCandidate *>(&theCand);
-    return (theRecoCand!=0 && (checkOverlap(track(),theRecoCand->track())));
+  const RecoCandidate* theRecoCand=dynamic_cast<const RecoCandidate *>(&theCand);
+  return (theRecoCand!=0 && (checkOverlap(track(),theRecoCand->track())));
 }
 
 void PFTau::dump(std::ostream& out) const {
+
+  if(!out) return;
+
+  out << "Its constituents :"<<std::endl;
+  out<<"# Tracks "<<pfTauTagInfoRef()->Tracks().size()<<std::endl;
+  out<<"# PF charged hadr. cand's "<<pfTauTagInfoRef()->PFChargedHadrCands().size()<<std::endl;
+  out<<"# PF neutral hadr. cand's "<<pfTauTagInfoRef()->PFNeutrHadrCands().size()<<std::endl;
+  out<<"# PF gamma cand's "<<pfTauTagInfoRef()->PFGammaCands().size()<<std::endl;
+  out<<"in detail :"<<std::endl;
+  
+  out<<"Pt of the PFTau "<<pt()<<std::endl;
+  PFCandidateRef theLeadPFCand = leadPFChargedHadrCand();
+  if(!theLeadPFCand){
+    out<<"No Lead PFCand "<<std::endl;
+  }else{
+    out<<"Lead PFCand Pt "<<(*theLeadPFCand).pt()<<std::endl;
+    out<<"Inner point position (x,y,z) of the PFTau ("<<vx()<<","<<vy()<<","<<vz()<<")"<<std::endl;
+    out<<"Charge of the PFTau "<<charge()<<std::endl;
+    out<<"Et of the highest Et HCAL PFCluster "<<maximumHCALPFClusterEt()<<std::endl;
+    out<<"Number of SignalPFChargedHadrCands = "<<signalPFChargedHadrCands().size()<<std::endl;
+    out<<"Number of SignalPFGammaCands = "<<signalPFGammaCands().size()<<std::endl;
+    out<<"Number of IsolationPFChargedHadrCands = "<<isolationPFChargedHadrCands().size()<<std::endl;
+    out<<"Number of IsolationPFGammaCands = "<<isolationPFGammaCands().size()<<std::endl;
+    out<<"Sum of Pt of charged hadr. PFCandidates in isolation annulus around Lead PF = "<<isolationPFChargedHadrCandsPtSum()<<std::endl;
+    out<<"Sum of Et of gamma PFCandidates in other isolation annulus around Lead PF = "<<isolationPFGammaCandsEtSum()<<std::endl;
     
-    if(!out) return;
-    
-    out << "Its constituents :"<<std::endl;
-    out<<"# Tracks "<<pfTauTagInfoRef()->Tracks().size()<<std::endl;
-    out<<"# PF charged hadr. cand's "<<pfTauTagInfoRef()->PFChargedHadrCands().size()<<std::endl;
-    out<<"# PF neutral hadr. cand's "<<pfTauTagInfoRef()->PFNeutrHadrCands().size()<<std::endl;
-    out<<"# PF gamma cand's "<<pfTauTagInfoRef()->PFGammaCands().size()<<std::endl;
-    out<<"in detail :"<<std::endl;
-    
-    out<<"Pt of the PFTau "<<pt()<<std::endl;
-    PFCandidateRef theLeadPFCand = leadPFChargedHadrCand();
-    if(!theLeadPFCand){
-        out<<"No Lead PFCand "<<std::endl;
-    }else{
-        out<<"Lead PFCand Pt "<<(*theLeadPFCand).pt()<<std::endl;
-        out<<"Inner point position (x,y,z) of the PFTau ("<<vx()<<","<<vy()<<","<<vz()<<")"<<std::endl;
-        out<<"Charge of the PFTau "<<charge()<<std::endl;
-        out<<"Et of the highest Et HCAL PFCluster "<<maximumHCALPFClusterEt()<<std::endl;
-        out<<"Number of SignalPFChargedHadrCands = "<<signalPFChargedHadrCands().size()<<std::endl;
-        out<<"Number of SignalPFGammaCands = "<<signalPFGammaCands().size()<<std::endl;
-        out<<"Number of IsolationPFChargedHadrCands = "<<isolationPFChargedHadrCands().size()<<std::endl;
-        out<<"Number of IsolationPFGammaCands = "<<isolationPFGammaCands().size()<<std::endl;
-        out<<"Sum of Pt of charged hadr. PFCandidates in isolation annulus around Lead PF = "<<isolationPFChargedHadrCandsPtSum()<<std::endl;
-        out<<"Sum of Et of gamma PFCandidates in other isolation annulus around Lead PF = "<<isolationPFGammaCandsEtSum()<<std::endl;
-        
-    }
-    // return out;
-    
+  }
+  // return out;
+  
 } 
 
 namespace reco {
+
+
+std::ostream& operator<<(std::ostream& out, const reco::PFTau& tau) {
+
+  if(!out) return out;
+
+  out<<"PFTau "
+     <<tau.pt()<<","
+     <<tau.eta()<<","
+     <<tau.phi()<<"  "    
+     <<tau.signalPFCands().size()<<","
+     <<tau.signalPFChargedHadrCands().size()<<","
+     <<tau.signalPFGammaCands().size()<<","
+     <<tau.signalPFNeutrHadrCands().size()<<"  "
+     <<tau.isolationPFCands().size()<<","
+     <<tau.isolationPFChargedHadrCands().size()<<","
+     <<tau.isolationPFGammaCands().size()<<","
+     <<tau.isolationPFNeutrHadrCands().size();
     
-    
-    std::ostream& operator<<(std::ostream& out, const reco::PFTau& tau) {
-        
-        if(!out) return out;
-        
-        out<<"PFTau "
-        <<tau.pt()<<","
-        <<tau.eta()<<","
-        <<tau.phi()<<"  "    
-        <<tau.signalPFCands().size()<<","
-        <<tau.signalPFChargedHadrCands().size()<<","
-        <<tau.signalPFGammaCands().size()<<","
-        <<tau.signalPFNeutrHadrCands().size()<<"  "
-        <<tau.isolationPFCands().size()<<","
-        <<tau.isolationPFChargedHadrCands().size()<<","
-        <<tau.isolationPFGammaCands().size()<<","
-        <<tau.isolationPFNeutrHadrCands().size();
-        
-        return out;
-    }
-    
+  return out;
+}
+
 }
