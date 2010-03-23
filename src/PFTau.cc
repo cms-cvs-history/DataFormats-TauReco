@@ -6,22 +6,7 @@ using namespace std;
 
 
 PFTau::PFTau(){
-  PFCandidateRef pfLead;
-  TrackRef tmp;
-  leadPFChargedHadrCand_=pfLead;
-  leadPFNeutralCand_=pfLead;
-  leadPFCand_=pfLead;
   leadPFChargedHadrCandsignedSipt_=NAN;
-  
-  PFCandidateRefVector pfTmp;
-  selectedSignalPFChargedHadrCands_=pfTmp;
-  selectedSignalPFNeutrHadrCands_=pfTmp;
-  selectedSignalPFGammaCands_=pfTmp;
-
-  selectedIsolationPFChargedHadrCands_=pfTmp;
-  selectedIsolationPFNeutrHadrCands_=pfTmp;
-  selectedIsolationPFGammaCands_=pfTmp;
-
   isolationPFChargedHadrCandsPtSum_=NAN;
   isolationPFGammaCandsEtSum_=NAN;
   maximumHCALPFClusterEt_=NAN;
@@ -31,43 +16,24 @@ hcalMaxOverPLead_ = NAN;
 hcal3x3OverPLead_ = NAN;
 ecalStripSumEOverPLead_= NAN;
 bremsRecoveryEOverPLead_ = NAN;
-electronPreIDTrack_ = tmp;
 electronPreIDOutput_ = NAN;
 electronPreIDDecision_= NAN;
-
 caloComp_ = NAN;
 segComp_ = NAN;
 muonDecision_ = NAN;
 }
 
 PFTau::PFTau(Charge q,const LorentzVector& p4,const Point& vtx) : BaseTau(q,p4,vtx){
-  PFCandidateRef pfLead;
-TrackRef tmp;
-  leadPFChargedHadrCand_=pfLead;
   leadPFChargedHadrCandsignedSipt_=NAN;
-  leadPFNeutralCand_=pfLead;
- leadPFCand_=pfLead;
-  
-  PFCandidateRefVector pfTmp;
-  selectedSignalPFChargedHadrCands_=pfTmp;
-  selectedSignalPFNeutrHadrCands_=pfTmp;
-  selectedSignalPFGammaCands_=pfTmp;
-
-  selectedIsolationPFChargedHadrCands_=pfTmp;
-  selectedIsolationPFNeutrHadrCands_=pfTmp;
-  selectedIsolationPFGammaCands_=pfTmp;
-
   isolationPFChargedHadrCandsPtSum_=NAN;
   isolationPFGammaCandsEtSum_=NAN;
   maximumHCALPFClusterEt_=NAN;
-
   emFraction_ = NAN;
 hcalTotOverPLead_ = NAN;
 hcalMaxOverPLead_ = NAN;
 hcal3x3OverPLead_ = NAN;
 ecalStripSumEOverPLead_= NAN;
 bremsRecoveryEOverPLead_ = NAN;
-electronPreIDTrack_ = tmp;
 electronPreIDOutput_ = NAN;
 electronPreIDDecision_= NAN;
 
