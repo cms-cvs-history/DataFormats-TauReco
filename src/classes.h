@@ -113,8 +113,6 @@ namespace {
     edm::RefProd<std::vector<reco::PFRecoTauChargedHadron> >                            pfrecoTauChH_rp;
     edm::RefVector<std::vector<reco::PFRecoTauChargedHadron> >                          pfrecoTauChH_rv;
     edm::reftobase::Holder<reco::LeafCandidate, reco::PFRecoTauChargedHadronRef>        pfrecoTauChH_rb;
-    edm::Association<std::vector<reco::PFRecoTauChargedHadron> >                        pfrecoTauChH_assoc_v; 
-    edm::Wrapper<edm::Association<std::vector<reco::PFRecoTauChargedHadron> > >         pfrecoTauChH_assoc_v_wrapper;
 
 
     reco::CaloTauDiscriminatorByIsolationBase                   calotdi_b;
@@ -173,6 +171,20 @@ namespace {
     std::vector<std::pair<reco::PFJetRef, std::vector<reco::RecoTauPiZero> > >                jetPiZeroAssoc_v;
 
     std::vector<std::vector<reco::RecoTauPiZero> >                jetPiZeroAssoc_v_v;
+    
+    reco::PFJetChargedHadronAssociationBase                     jetChHAssoc_b;
+    reco::PFJetChargedHadronAssociation                         jetChHAssoc_o;
+    reco::PFJetChargedHadronAssociationRef                      jetChHAssoc_r;
+    reco::PFJetChargedHadronAssociationRefProd                  jetChHAssoc_rp;
+    reco::PFJetChargedHadronAssociationRefVector                jetChHAssoc_rv;
+    edm::Wrapper<reco::PFJetChargedHadronAssociation>           jetChHAssoc_w;
+
+    std::pair<reco::PFJetRef, std::vector<reco::PFRecoTauChargedHadron> >                              jetChHAssoc_p;
+    std::vector<std::pair<reco::PFJetRef, std::vector<reco::PFRecoTauChargedHadron> > >                jetChHAssoc_v;
+
+    std::vector<std::vector<reco::PFRecoTauChargedHadron> >                jetChHAssoc_v_v;
+
+
 
     reco::PFTauDecayModeAssociation                         pftdecaymodeass_o;
     reco::PFTauDecayModeAssociationRef                      pftdecaymodeass_r;
