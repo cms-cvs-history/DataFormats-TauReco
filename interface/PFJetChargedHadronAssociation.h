@@ -27,7 +27,7 @@ namespace reco
     {}
   };
   
-  typedef PFJetChargedHadronAssociation::value_type PFJetChargedHadronAssociationPiZeros;  
+  typedef PFJetChargedHadronAssociation::value_type PFJetChargedHadronAssociationVT;  
   typedef edm::Ref<PFJetChargedHadronAssociation> PFJetChargedHadronAssociationRef;  
   typedef edm::RefProd<PFJetChargedHadronAssociation> PFJetChargedHadronAssociationRefProd;  
   typedef edm::RefVector<PFJetChargedHadronAssociation> PFJetChargedHadronAssociationRefVector; 

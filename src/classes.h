@@ -22,6 +22,9 @@
 #include "DataFormats/TauReco/interface/PFTauDecayModeAssociation.h"
 #include "DataFormats/TauReco/interface/L2TauInfoAssociation.h"
 #include "DataFormats/TauReco/interface/HLTTau.h"
+#include "DataFormats/TauReco/interface/PFRecoTauChargedHadron.h"
+#include "DataFormats/TauReco/interface/PFRecoTauChargedHadronFwd.h"
+#include "DataFormats/TauReco/interface/PFJetChargedHadronAssociation.h"
 
 #include <vector>
 #include <map>
@@ -103,6 +106,16 @@ namespace {
     edm::RefProd<std::vector<reco::RecoTauPiZero> >                            recoTauPiZero_rp;
     edm::RefVector<std::vector<reco::RecoTauPiZero> >                          recoTauPiZero_rv;
     edm::reftobase::Holder<reco::CompositePtrCandidate, reco::RecoTauPiZeroRef>    recoTauPiZero_rb;
+
+    std::vector<reco::PFRecoTauChargedHadron>                                           pfrecoTauChH_v;
+    edm::Wrapper<std::vector<reco::PFRecoTauChargedHadron> >                            pfrecoTauChH_w;
+    edm::Ref<std::vector<reco::PFRecoTauChargedHadron> >                                pfrecoTauChH_r;
+    edm::RefProd<std::vector<reco::PFRecoTauChargedHadron> >                            pfrecoTauChH_rp;
+    edm::RefVector<std::vector<reco::PFRecoTauChargedHadron> >                          pfrecoTauChH_rv;
+    edm::reftobase::Holder<reco::LeafCandidate, reco::PFRecoTauChargedHadronRef>        pfrecoTauChH_rb;
+    edm::Association<std::vector<reco::PFRecoTauChargedHadron> >                        pfrecoTauChH_assoc_v; 
+    edm::Wrapper<edm::Association<std::vector<reco::PFRecoTauChargedHadron> > >         pfrecoTauChH_assoc_v_wrapper;
+
 
     reco::CaloTauDiscriminatorByIsolationBase                   calotdi_b;
     reco::CaloTauDiscriminatorByIsolation                       calotdi_o;
