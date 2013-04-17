@@ -17,6 +17,8 @@
 #include "DataFormats/ParticleFlowCandidate/interface/PFCandidateFwd.h"
 #include "DataFormats/TauReco/interface/RecoTauPiZero.h"
 #include "DataFormats/TauReco/interface/RecoTauPiZeroFwd.h"
+#include "DataFormats/TauReco/interface/PFRecoTauChargedHadron.h"
+#include "DataFormats/TauReco/interface/PFRecoTauChargedHadronFwd.h"
 
 #include <iostream>
 #include <limits>
@@ -133,6 +135,17 @@ class PFTau : public BaseTau {
     void setisolationPiZeroCandidates(const std::vector<RecoTauPiZero>&);
     void setIsolationPiZeroCandidatesRefs(const RecoTauPiZeroRefVector&);
 
+    /// Retrieve the association of signal region PF candidates into candidate PFRecoTauChargedHadrons
+    const std::vector<PFRecoTauChargedHadron>& signalTauChargedHadronCandidates() const;
+    void setSignalTauChargedHadronCandidates(const std::vector<PFRecoTauChargedHadron>&);
+    void setSignalTauChargedHadronCandidatesRefs(const PFRecoTauChargedHadronRefVector&);
+
+    /// Retrieve the association of isolation region PF candidates into candidate PFRecoTauChargedHadron
+    const std::vector<PFRecoTauChargedHadron>& isolationTauChargedHadronCandidates() const;
+    void setIsolationTauChargedHadronCandidates(const std::vector<PFRecoTauChargedHadron>&);
+    void setIsolationTauChargedHadronCandidatesRefs(const PFRecoTauChargedHadronRefVector&);
+
+
     /// Retrieve the identified hadronic decay mode according to the number of
     /// charged and piZero candidates in the signal cone
     hadronicDecayMode decayMode() const;
@@ -187,6 +200,7 @@ class PFTau : public BaseTau {
 
     bool muonDecision_;
     bool electronPreIDDecision_;
+
     // SIP
     float leadPFChargedHadrCandsignedSipt_;
     // Isolation variables
@@ -228,9 +242,17 @@ class PFTau : public BaseTau {
     RecoTauPiZeroRefVector signalPiZeroCandidatesRefs_;
     RecoTauPiZeroRefVector isolationPiZeroCandidatesRefs_;
 
+    PFRecoTauChargedHadronRefVector signalTauChargedHadronCandidatesRefs_;
+    PFRecoTauChargedHadronRefVector isolationTauChargedHadronCandidatesRefs_;
+
     // Association of gamma candidates into PiZeros (transient)
     mutable std::vector<reco::RecoTauPiZero> signalPiZeroCandidates_;
     mutable std::vector<reco::RecoTauPiZero> isolationPiZeroCandidates_;
+
+    // Association of PF candidates into PFRecoTauChargedHadrons (transient)
+    mutable std::vector<reco::PFRecoTauChargedHadron> signalTauChargedHadronCandidates_;
+    mutable std::vector<reco::PFRecoTauChargedHadron> isolationTauChargedHadronCandidates_;
+
 };
 
 std::ostream & operator<<(std::ostream& out, const PFTau& c);

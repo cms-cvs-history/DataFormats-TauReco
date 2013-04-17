@@ -1,8 +1,7 @@
 #ifndef DataFormats_TauReco_PFRecoTauChargedHadron_h
 #define DataFormats_TauReco_PFRecoTauChargedHadron_h
 
-#include "DataFormats/Candidate/interface/LeafCandidate.h"
-
+#include "DataFormats/Candidate/interface/CompositePtrCandidate.h"
 #include "DataFormats/ParticleFlowCandidate/interface/PFCandidateFwd.h"
 #include "DataFormats/TrackReco/interface/Track.h"
 #include "DataFormats/Common/interface/Ptr.h"
@@ -16,7 +15,7 @@ class PFRecoTauChargedHadronProducer;
 
 namespace reco {
 
-class PFRecoTauChargedHadron : public LeafCandidate 
+class PFRecoTauChargedHadron : public CompositePtrCandidate
 {
  public:
   typedef edm::Ptr<Track> TrackPtr;
@@ -32,15 +31,16 @@ class PFRecoTauChargedHadron : public LeafCandidate
   PFRecoTauChargedHadron();
   PFRecoTauChargedHadron(PFRecoTauChargedHadronAlgorithm algo, Charge q);
 
+
+  /// constructor from a Candidate
+  PFRecoTauChargedHadron(const Candidate & c, PFRecoTauChargedHadronAlgorithm algo = kUndefined);
+
   /// constructor from values
   PFRecoTauChargedHadron(Charge q, const LorentzVector& p4,
 			 const Point& vtx = Point( 0, 0, 0 ),
 			 int status = 0, bool integerCharge = true,
 			 PFRecoTauChargedHadronAlgorithm algo = kUndefined);
 
-  /// constructor from a Candidate
-  PFRecoTauChargedHadron(const Candidate& c, PFRecoTauChargedHadronAlgorithm algo = kUndefined);
- 
   /// destructor
   ~PFRecoTauChargedHadron();
 

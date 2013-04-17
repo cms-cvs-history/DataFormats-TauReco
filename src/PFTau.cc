@@ -100,6 +100,7 @@ const std::vector<RecoTauPiZero>& PFTau::signalPiZeroCandidates() const {
   return signalPiZeroCandidates_;
 }
 
+
 void PFTau::setsignalPiZeroCandidates(const std::vector<RecoTauPiZero>& cands) {
    signalPiZeroCandidates_ = cands;
 }
@@ -127,6 +128,48 @@ void PFTau::setisolationPiZeroCandidates(const std::vector<RecoTauPiZero>& cands
    signalPiZeroCandidates_ = cands;
 }
 
+  // Tau Charged Hadron information
+const std::vector<PFRecoTauChargedHadron>& PFTau::signalTauChargedHadronCandidates() const {
+  // Check if the signal tau charged hadrons are already filled
+  if (signalTauChargedHadronCandidates_.size() < signalTauChargedHadronCandidatesRefs_.size()) {
+    // Fill them from the refs
+    for (size_t i = 0; i < signalTauChargedHadronCandidatesRefs_.size(); ++i) {
+	signalTauChargedHadronCandidates_.push_back(*signalTauChargedHadronCandidatesRefs_[i]);
+    }
+  }
+  return signalTauChargedHadronCandidates_;
+}
+
+void PFTau::setSignalTauChargedHadronCandidates(const std::vector<PFRecoTauChargedHadron>& cands) {
+  signalTauChargedHadronCandidates_ = cands;
+}
+
+void PFTau::setSignalTauChargedHadronCandidatesRefs(const PFRecoTauChargedHadronRefVector& cands) {
+  signalTauChargedHadronCandidatesRefs_ = cands;
+}
+
+const std::vector<PFRecoTauChargedHadron>& PFTau::isolationTauChargedHadronCandidates() const {
+  // Check if the isolation tau charged hadrons are already filled
+  if (isolationTauChargedHadronCandidates_.size() < isolationTauChargedHadronCandidatesRefs_.size()) {
+    // Fill them from the refs
+    for (size_t i = 0; i < isolationTauChargedHadronCandidatesRefs_.size(); ++i) {
+      isolationTauChargedHadronCandidates_.push_back(*isolationTauChargedHadronCandidatesRefs_[i]);
+    }
+  }
+  return isolationTauChargedHadronCandidates_;
+}
+
+void PFTau::setIsolationTauChargedHadronCandidates(const std::vector<PFRecoTauChargedHadron>& cands) {
+  isolationTauChargedHadronCandidates_ = cands;
+}
+
+void PFTau::setIsolationTauChargedHadronCandidatesRefs(const PFRecoTauChargedHadronRefVector& cands) {
+  isolationTauChargedHadronCandidatesRefs_ = cands;
+}
+
+
+
+
 PFTau::hadronicDecayMode PFTau::decayMode() const {
   unsigned int nCharged = signalPFChargedHadrCands().size();
   unsigned int nPiZeros = signalPiZeroCandidates().size();
@@ -138,10 +181,11 @@ PFTau::hadronicDecayMode PFTau::decayMode() const {
   unsigned int trackIndex = (nCharged-1)*(maxPiZeros+1);
   // Check if we handle the given number of tracks
   if(trackIndex >= kRareDecayMode) return kRareDecayMode;
-
+  
   nPiZeros = (nPiZeros <= maxPiZeros) ? nPiZeros : maxPiZeros;
   return static_cast<PFTau::hadronicDecayMode>(trackIndex + nPiZeros);
 }
+
 
 
 // Setting information about the isolation region

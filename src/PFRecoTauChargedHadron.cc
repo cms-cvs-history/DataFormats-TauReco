@@ -5,31 +5,42 @@
 namespace reco {
 
 PFRecoTauChargedHadron::PFRecoTauChargedHadron()
-  : LeafCandidate(),
+  : CompositePtrCandidate(),
     algo_(kUndefined)
 {}
 
 PFRecoTauChargedHadron::PFRecoTauChargedHadron(PFRecoTauChargedHadronAlgorithm algo, Charge q)
-  : LeafCandidate(), 
+  : CompositePtrCandidate(), 
     algo_(algo) 
 { 
   if ( q > 0. ) this->setPdgId(+211); 
   else if ( q < 0. ) this->setPdgId(-211); 
 }
+
+// PFRecoTauChargedHadron::PFRecoTauChargedHadron(Charge q, const LorentzVector& p4,
+// 					      PFRecoTauChargedHadronAlgorithm algo)
+//   : PFCandidate(q, p4, PFCandidate::h), 
+//     algo_(algo) 
+// { 
+//   if ( q > 0. ) this->setPdgId(+211); 
+//   else if ( q < 0. ) this->setPdgId(-211); 
+// }
 
 PFRecoTauChargedHadron::PFRecoTauChargedHadron(Charge q, const LorentzVector& p4,
 					       const Point& vtx,
 					       int status, bool integerCharge,
 					       PFRecoTauChargedHadronAlgorithm algo)
-  : LeafCandidate(q, p4, vtx, 0, status, integerCharge), 
+  : CompositePtrCandidate(q, p4, vtx, 211, status, integerCharge), 
     algo_(algo) 
 { 
   if ( q > 0. ) this->setPdgId(+211); 
   else if ( q < 0. ) this->setPdgId(-211); 
+  
 }
+
     
 PFRecoTauChargedHadron::PFRecoTauChargedHadron(const Candidate& c, PFRecoTauChargedHadronAlgorithm algo)
-  : LeafCandidate(c),
+  : CompositePtrCandidate(c),
     algo_(algo) 
 { 
   if ( c.charge() > 0. ) this->setPdgId(+211); 

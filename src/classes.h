@@ -112,7 +112,7 @@ namespace {
     edm::Ref<std::vector<reco::PFRecoTauChargedHadron> >                                pfrecoTauChH_r;
     edm::RefProd<std::vector<reco::PFRecoTauChargedHadron> >                            pfrecoTauChH_rp;
     edm::RefVector<std::vector<reco::PFRecoTauChargedHadron> >                          pfrecoTauChH_rv;
-    edm::reftobase::Holder<reco::LeafCandidate, reco::PFRecoTauChargedHadronRef>        pfrecoTauChH_rb;
+    edm::reftobase::Holder<reco::CompositePtrCandidate, reco::PFRecoTauChargedHadronRef>        pfrecoTauChH_rb;
 
 
     reco::CaloTauDiscriminatorByIsolationBase                   calotdi_b;
