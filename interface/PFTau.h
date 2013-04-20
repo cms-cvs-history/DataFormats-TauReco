@@ -65,14 +65,14 @@ class PFTau : public BaseTau {
     const PFTauTagInfoRef& pfTauTagInfoRef() const;
     void setpfTauTagInfoRef(const PFTauTagInfoRef);
 
-    const PFCandidateRef& leadPFChargedHadrCand() const;
-    const PFCandidateRef& leadPFNeutralCand() const;
+    const PFCandidatePtr& leadPFChargedHadrCand() const;
+    const PFCandidatePtr& leadPFNeutralCand() const;
     //Can be either the charged or the neutral one
-    const PFCandidateRef& leadPFCand() const;
+    const PFCandidatePtr& leadPFCand() const;
 
-    void setleadPFChargedHadrCand(const PFCandidateRef&);
-    void setleadPFNeutralCand(const PFCandidateRef&);
-    void setleadPFCand(const PFCandidateRef&);
+    void setleadPFChargedHadrCand(const PFCandidatePtr&);
+    void setleadPFNeutralCand(const PFCandidatePtr&);
+    void setleadPFCand(const PFCandidatePtr&);
 
     /// Signed transverse impact parameter significance of the Track
     /// associated to the leading charged PFCandidate
@@ -80,36 +80,36 @@ class PFTau : public BaseTau {
     void setleadPFChargedHadrCandsignedSipt(const float&);
 
     /// PFCandidates in signal region
-    const PFCandidateRefVector& signalPFCands() const;
-    void setsignalPFCands(const PFCandidateRefVector&);
+    const std::vector<reco::PFCandidatePtr>& signalPFCands() const;
+    void setsignalPFCands(const std::vector<reco::PFCandidatePtr>&);
 
     /// Charged hadrons in signal region
-    const PFCandidateRefVector& signalPFChargedHadrCands() const;
-    void setsignalPFChargedHadrCands(const PFCandidateRefVector&);
+    const std::vector<reco::PFCandidatePtr>& signalPFChargedHadrCands() const;
+    void setsignalPFChargedHadrCands(const std::vector<reco::PFCandidatePtr>&);
 
     /// Neutral hadrons in signal region
-    const PFCandidateRefVector& signalPFNeutrHadrCands() const;
-    void setsignalPFNeutrHadrCands(const PFCandidateRefVector&);
+    const std::vector<reco::PFCandidatePtr>& signalPFNeutrHadrCands() const;
+    void setsignalPFNeutrHadrCands(const std::vector<reco::PFCandidatePtr>&);
 
     /// Gamma candidates in signal region
-    const PFCandidateRefVector& signalPFGammaCands() const;
-    void setsignalPFGammaCands(const PFCandidateRefVector&);
+    const std::vector<reco::PFCandidatePtr>& signalPFGammaCands() const;
+    void setsignalPFGammaCands(const std::vector<reco::PFCandidatePtr>&);
 
     /// PFCandidates in isolation region
-    const PFCandidateRefVector& isolationPFCands() const;
-    void setisolationPFCands(const PFCandidateRefVector&);
+    const std::vector<reco::PFCandidatePtr>& isolationPFCands() const;
+    void setisolationPFCands(const std::vector<reco::PFCandidatePtr>&);
 
     /// Charged candidates in isolation region
-    const PFCandidateRefVector& isolationPFChargedHadrCands() const;
-    void setisolationPFChargedHadrCands(const PFCandidateRefVector&);
+    const std::vector<reco::PFCandidatePtr>& isolationPFChargedHadrCands() const;
+    void setisolationPFChargedHadrCands(const std::vector<reco::PFCandidatePtr>&);
 
     //// Neutral hadrons in isolation region
-    const PFCandidateRefVector& isolationPFNeutrHadrCands() const;
-    void setisolationPFNeutrHadrCands(const PFCandidateRefVector&);
+    const std::vector<reco::PFCandidatePtr>& isolationPFNeutrHadrCands() const;
+    void setisolationPFNeutrHadrCands(const std::vector<reco::PFCandidatePtr>&);
 
     /// Gamma candidates in isolation region
-    const PFCandidateRefVector& isolationPFGammaCands() const;
-    void setisolationPFGammaCands(const PFCandidateRefVector&);
+    const std::vector<reco::PFCandidatePtr>& isolationPFGammaCands() const;
+    void setisolationPFGammaCands(const std::vector<reco::PFCandidatePtr>&);
 
     /// Sum of charged hadron candidate PT in isolation cone; returns NaN
     /// if isolation region is undefined.
@@ -223,21 +223,22 @@ class PFTau : public BaseTau {
 
     reco::PFJetRef jetRef_;
     PFTauTagInfoRef PFTauTagInfoRef_;
-    PFCandidateRef leadPFChargedHadrCand_;
-    PFCandidateRef leadPFNeutralCand_, leadPFCand_;
+    reco::PFCandidatePtr leadPFChargedHadrCand_;
+    reco::PFCandidatePtr leadPFNeutralCand_;
+    reco::PFCandidatePtr leadPFCand_;
     reco::TrackRef electronPreIDTrack_;
 
     // Signal candidates
-    PFCandidateRefVector selectedSignalPFCands_,
-                         selectedSignalPFChargedHadrCands_,
-                         selectedSignalPFNeutrHadrCands_,
-                         selectedSignalPFGammaCands_;
+    std::vector<reco::PFCandidatePtr> selectedSignalPFCands_;
+    std::vector<reco::PFCandidatePtr> selectedSignalPFChargedHadrCands_;
+    std::vector<reco::PFCandidatePtr> selectedSignalPFNeutrHadrCands_;
+    std::vector<reco::PFCandidatePtr> selectedSignalPFGammaCands_;
 
     // Isolation candidates
-    PFCandidateRefVector selectedIsolationPFCands_,
-                         selectedIsolationPFChargedHadrCands_,
-                         selectedIsolationPFNeutrHadrCands_,
-                         selectedIsolationPFGammaCands_;
+    std::vector<reco::PFCandidatePtr> selectedIsolationPFCands_;
+    std::vector<reco::PFCandidatePtr> selectedIsolationPFChargedHadrCands_;
+    std::vector<reco::PFCandidatePtr> selectedIsolationPFNeutrHadrCands_;
+    std::vector<reco::PFCandidatePtr> selectedIsolationPFGammaCands_;
 
     RecoTauPiZeroRefVector signalPiZeroCandidatesRefs_;
     RecoTauPiZeroRefVector isolationPiZeroCandidatesRefs_;
