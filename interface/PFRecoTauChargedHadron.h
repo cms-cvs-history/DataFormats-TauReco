@@ -10,6 +10,7 @@
 namespace reco { namespace tau {
   class PFRecoTauChargedHadronFromPFCandidatePlugin;
   class PFRecoTauChargedHadronFromTrackPlugin;
+  class PFRecoTauEnergyAlgorithmPlugin;
 }} 
 class PFRecoTauChargedHadronProducer;
 
@@ -66,8 +67,9 @@ class PFRecoTauChargedHadron : public CompositePtrCandidate
     
   friend class tau::PFRecoTauChargedHadronFromPFCandidatePlugin;
   friend class tau::PFRecoTauChargedHadronFromTrackPlugin;
+  friend class tau::PFRecoTauEnergyAlgorithmPlugin;
   friend class ::PFRecoTauChargedHadronProducer;
-  
+
  private:
   PFRecoTauChargedHadronAlgorithm algo_;
 
