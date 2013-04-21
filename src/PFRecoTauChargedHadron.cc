@@ -98,7 +98,6 @@ namespace
 
 void PFRecoTauChargedHadron::print(std::ostream& stream) const 
 {
-  stream << "<PFRecoTauChargedHadron::print>:" << std::endl;
   stream << " Pt = " << this->pt() << ", eta = " << this->eta() << ", phi = " << this->phi() << " (mass = " << this->mass() << ")" << std::endl;
   stream << " charge = " << this->charge() << " (pdgId = " << this->pdgId() << ")" << std::endl;
   stream << "charged PFCandidate: ";
