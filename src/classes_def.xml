@@ -56,7 +56,8 @@
   <class name="edm::RefVector<std::vector<reco::CaloTau>,reco::CaloTau,edm::refhelper::FindUsingAdvance<std::vector<reco::CaloTau>,reco::CaloTau> >"/>
   <class name="edm::reftobase::Holder<reco::BaseTau, edm::Ref<std::vector<reco::CaloTau>,reco::CaloTau,edm::refhelper::FindUsingAdvance<std::vector<reco::CaloTau>,reco::CaloTau> > >" />
   
-  <class name="reco::PFTau" ClassVersion="12">
+  <class name="reco::PFTau" ClassVersion="13">
+   <version ClassVersion="13" checksum="3087106015"/>
    <version ClassVersion="12" checksum="1810832394"/>
    <version ClassVersion="11" checksum="2334259986"/>
      <field name="signalPiZeroCandidates_" transient="true"/>
