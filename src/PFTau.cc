@@ -5,11 +5,12 @@
 //using namespace std;
 namespace reco {
 
-PFTau::PFTau() {
-    leadPFChargedHadrCandsignedSipt_=NAN;
-    isolationPFChargedHadrCandsPtSum_=NAN;
-    isolationPFGammaCandsEtSum_=NAN;
-    maximumHCALPFClusterEt_=NAN;
+PFTau::PFTau() 
+{
+    leadPFChargedHadrCandsignedSipt_ = NAN;
+    isolationPFChargedHadrCandsPtSum_ = NAN;
+    isolationPFGammaCandsEtSum_ = NAN;
+    maximumHCALPFClusterEt_ = NAN;
     emFraction_ = NAN;
     hcalTotOverPLead_ = NAN;
     hcalMaxOverPLead_ = NAN;
@@ -23,12 +24,13 @@ PFTau::PFTau() {
     muonDecision_ = NAN;
 }
 
-PFTau::PFTau(Charge q,const LorentzVector& p4,const Point& vtx) : BaseTau(q,p4,vtx)
+PFTau::PFTau(Charge q, const LorentzVector& p4, const Point& vtx) 
+  : BaseTau(q, p4, vtx)
 {
-   leadPFChargedHadrCandsignedSipt_=NAN;
-   isolationPFChargedHadrCandsPtSum_=NAN;
-   isolationPFGammaCandsEtSum_=NAN;
-   maximumHCALPFClusterEt_=NAN;
+   leadPFChargedHadrCandsignedSipt_ = NAN;
+   isolationPFChargedHadrCandsPtSum_ = NAN;
+   isolationPFGammaCandsEtSum_ = NAN;
+   maximumHCALPFClusterEt_ = NAN;
 
    emFraction_ = NAN;
    hcalTotOverPLead_ = NAN;
@@ -47,8 +49,8 @@ PFTau::PFTau(Charge q,const LorentzVector& p4,const Point& vtx) : BaseTau(q,p4,v
 PFTau* PFTau::clone() const { return new PFTau(*this); }
 
 // Constituent getters and setters
-const PFJetRef& PFTau::jetRef() const {return jetRef_;}
-void PFTau::setjetRef(const PFJetRef& x) {jetRef_=x;}
+const PFJetRef& PFTau::jetRef() const { return jetRef_; }
+void PFTau::setjetRef(const PFJetRef& x) { jetRef_ = x; }
 
 const PFTauTagInfoRef& PFTau::pfTauTagInfoRef() const {
 //  edm::LogWarning("DeprecatedPFTauMember")
@@ -57,49 +59,48 @@ const PFTauTagInfoRef& PFTau::pfTauTagInfoRef() const {
   return PFTauTagInfoRef_;
 }
 
-void PFTau::setpfTauTagInfoRef(const PFTauTagInfoRef x) {PFTauTagInfoRef_=x;}
+void PFTau::setpfTauTagInfoRef(const PFTauTagInfoRef x) { PFTauTagInfoRef_ = x; }
 
-const PFCandidatePtr& PFTau::leadPFChargedHadrCand() const {return leadPFChargedHadrCand_;}
-const PFCandidatePtr& PFTau::leadPFNeutralCand() const {return leadPFNeutralCand_;}
-const PFCandidatePtr& PFTau::leadPFCand() const {return leadPFCand_;}
+const PFCandidatePtr& PFTau::leadPFChargedHadrCand() const { return leadPFChargedHadrCand_; }
+const PFCandidatePtr& PFTau::leadPFNeutralCand() const { return leadPFNeutralCand_; }
+const PFCandidatePtr& PFTau::leadPFCand() const { return leadPFCand_; }
 
-void PFTau::setleadPFChargedHadrCand(const PFCandidatePtr& myLead) { leadPFChargedHadrCand_=myLead;}
-void PFTau::setleadPFNeutralCand(const PFCandidatePtr& myLead) { leadPFNeutralCand_=myLead;}
-void PFTau::setleadPFCand(const PFCandidatePtr& myLead) { leadPFCand_=myLead;}
+void PFTau::setleadPFChargedHadrCand(const PFCandidatePtr& myLead) { leadPFChargedHadrCand_ = myLead;}
+void PFTau::setleadPFNeutralCand(const PFCandidatePtr& myLead) { leadPFNeutralCand_ = myLead;}
+void PFTau::setleadPFCand(const PFCandidatePtr& myLead) { leadPFCand_ = myLead;}
 
-float PFTau::leadPFChargedHadrCandsignedSipt() const {return leadPFChargedHadrCandsignedSipt_;}
-void PFTau::setleadPFChargedHadrCandsignedSipt(const float& x){leadPFChargedHadrCandsignedSipt_=x;}
+float PFTau::leadPFChargedHadrCandsignedSipt() const { return leadPFChargedHadrCandsignedSipt_; }
+void PFTau::setleadPFChargedHadrCandsignedSipt(const float& x){ leadPFChargedHadrCandsignedSipt_ = x; }
 
-const std::vector<PFCandidatePtr>& PFTau::signalPFCands() const {return selectedSignalPFCands_;}
-void PFTau::setsignalPFCands(const std::vector<PFCandidatePtr>& myParts)  { selectedSignalPFCands_ = myParts;}
-const std::vector<PFCandidatePtr>& PFTau::signalPFChargedHadrCands() const {return selectedSignalPFChargedHadrCands_;}
-void PFTau::setsignalPFChargedHadrCands(const std::vector<PFCandidatePtr>& myParts)  { selectedSignalPFChargedHadrCands_ = myParts;}
-const std::vector<PFCandidatePtr>& PFTau::signalPFNeutrHadrCands() const {return selectedSignalPFNeutrHadrCands_;}
-void PFTau::setsignalPFNeutrHadrCands(const std::vector<PFCandidatePtr>& myParts)  { selectedSignalPFNeutrHadrCands_ = myParts;}
-const std::vector<PFCandidatePtr>& PFTau::signalPFGammaCands() const {return selectedSignalPFGammaCands_;}
-void PFTau::setsignalPFGammaCands(const std::vector<PFCandidatePtr>& myParts)  { selectedSignalPFGammaCands_ = myParts;}
+const std::vector<PFCandidatePtr>& PFTau::signalPFCands() const { return selectedSignalPFCands_; }
+void PFTau::setsignalPFCands(const std::vector<PFCandidatePtr>& myParts)  { selectedSignalPFCands_ = myParts; }
+const std::vector<PFCandidatePtr>& PFTau::signalPFChargedHadrCands() const { return selectedSignalPFChargedHadrCands_; }
+void PFTau::setsignalPFChargedHadrCands(const std::vector<PFCandidatePtr>& myParts)  { selectedSignalPFChargedHadrCands_ = myParts; }
+const std::vector<PFCandidatePtr>& PFTau::signalPFNeutrHadrCands() const {return selectedSignalPFNeutrHadrCands_; }
+void PFTau::setsignalPFNeutrHadrCands(const std::vector<PFCandidatePtr>& myParts)  { selectedSignalPFNeutrHadrCands_ = myParts; }
+const std::vector<PFCandidatePtr>& PFTau::signalPFGammaCands() const { return selectedSignalPFGammaCands_; }
+void PFTau::setsignalPFGammaCands(const std::vector<PFCandidatePtr>& myParts)  { selectedSignalPFGammaCands_ = myParts; }
 
-const std::vector<PFCandidatePtr>& PFTau::isolationPFCands() const {return selectedIsolationPFCands_;}
-void PFTau::setisolationPFCands(const std::vector<PFCandidatePtr>& myParts)  { selectedIsolationPFCands_ = myParts;}
-const std::vector<PFCandidatePtr>& PFTau::isolationPFChargedHadrCands() const {return selectedIsolationPFChargedHadrCands_;}
-void PFTau::setisolationPFChargedHadrCands(const std::vector<PFCandidatePtr>& myParts)  { selectedIsolationPFChargedHadrCands_ = myParts;}
-const std::vector<PFCandidatePtr>& PFTau::isolationPFNeutrHadrCands() const {return selectedIsolationPFNeutrHadrCands_;}
-void PFTau::setisolationPFNeutrHadrCands(const std::vector<PFCandidatePtr>& myParts)  { selectedIsolationPFNeutrHadrCands_ = myParts;}
-const std::vector<PFCandidatePtr>& PFTau::isolationPFGammaCands() const {return selectedIsolationPFGammaCands_;}
-void PFTau::setisolationPFGammaCands(const std::vector<PFCandidatePtr>& myParts)  { selectedIsolationPFGammaCands_ = myParts;}
+const std::vector<PFCandidatePtr>& PFTau::isolationPFCands() const { return selectedIsolationPFCands_; }
+void PFTau::setisolationPFCands(const std::vector<PFCandidatePtr>& myParts)  { selectedIsolationPFCands_ = myParts;} 
+const std::vector<PFCandidatePtr>& PFTau::isolationPFChargedHadrCands() const { return selectedIsolationPFChargedHadrCands_; }
+void PFTau::setisolationPFChargedHadrCands(const std::vector<PFCandidatePtr>& myParts)  { selectedIsolationPFChargedHadrCands_ = myParts; }
+const std::vector<PFCandidatePtr>& PFTau::isolationPFNeutrHadrCands() const { return selectedIsolationPFNeutrHadrCands_; }
+void PFTau::setisolationPFNeutrHadrCands(const std::vector<PFCandidatePtr>& myParts)  { selectedIsolationPFNeutrHadrCands_ = myParts; }
+const std::vector<PFCandidatePtr>& PFTau::isolationPFGammaCands() const { return selectedIsolationPFGammaCands_; }
+void PFTau::setisolationPFGammaCands(const std::vector<PFCandidatePtr>& myParts)  { selectedIsolationPFGammaCands_ = myParts; }
 
 // PiZero and decay mode information
 const std::vector<RecoTauPiZero>& PFTau::signalPiZeroCandidates() const {
   // Check if the signal pi zeros are already filled
-  if (signalPiZeroCandidates_.size() < signalPiZeroCandidatesRefs_.size()) {
+  if ( signalPiZeroCandidates_.size() < signalPiZeroCandidatesRefs_.size() ) {
     // Fill them from the refs
-    for (size_t i = 0; i < signalPiZeroCandidatesRefs_.size(); ++i) {
+    for ( size_t i = 0; i < signalPiZeroCandidatesRefs_.size(); ++i ) {
       signalPiZeroCandidates_.push_back(*signalPiZeroCandidatesRefs_[i]);
     }
   }
   return signalPiZeroCandidates_;
 }
-
 
 void PFTau::setsignalPiZeroCandidates(const std::vector<RecoTauPiZero>& cands) {
    signalPiZeroCandidates_ = cands;
@@ -115,20 +116,28 @@ void PFTau::setIsolationPiZeroCandidatesRefs(const RecoTauPiZeroRefVector& cands
 
 const std::vector<RecoTauPiZero>& PFTau::isolationPiZeroCandidates() const {
   // Check if the signal pi zeros are already filled
-  if (isolationPiZeroCandidates_.size() < isolationPiZeroCandidatesRefs_.size()) {
+  if ( isolationPiZeroCandidates_.size() < isolationPiZeroCandidatesRefs_.size() ) {
     // Fill them from the refs
-    for (size_t i = 0; i < isolationPiZeroCandidatesRefs_.size(); ++i) {
+    for ( size_t i = 0; i < isolationPiZeroCandidatesRefs_.size(); ++i ) {
       isolationPiZeroCandidates_.push_back(*isolationPiZeroCandidatesRefs_[i]);
     }
   }
   return isolationPiZeroCandidates_;
 }
 
-void PFTau::setisolationPiZeroCandidates(const std::vector<RecoTauPiZero>& cands){
+void PFTau::setisolationPiZeroCandidates(const std::vector<RecoTauPiZero>& cands) {
    signalPiZeroCandidates_ = cands;
 }
 
-  // Tau Charged Hadron information
+// Tau Charged Hadron information
+PFRecoTauChargedHadronRef PFTau::leadTauChargedHadronCandidate() const {
+  if ( signalTauChargedHadronCandidatesRefs_.size() > 0 ) {
+    return signalTauChargedHadronCandidatesRefs_[0];
+  } else {
+    return PFRecoTauChargedHadronRef();
+  }
+}
+
 const std::vector<PFRecoTauChargedHadron>& PFTau::signalTauChargedHadronCandidates() const {
   // Check if the signal tau charged hadrons are already filled
   if (signalTauChargedHadronCandidates_.size() < signalTauChargedHadronCandidatesRefs_.size()) {
@@ -167,11 +176,8 @@ void PFTau::setIsolationTauChargedHadronCandidatesRefs(const PFRecoTauChargedHad
   isolationTauChargedHadronCandidatesRefs_ = cands;
 }
 
-
-
-
 PFTau::hadronicDecayMode PFTau::decayMode() const {
-  unsigned int nCharged = signalPFChargedHadrCands().size();
+  unsigned int nCharged = signalTauChargedHadronCandidates().size();
   unsigned int nPiZeros = signalPiZeroCandidates().size();
   // If no tracks exist, this is definitely not a tau!
   if(!nCharged) return kNull;
@@ -185,8 +191,6 @@ PFTau::hadronicDecayMode PFTau::decayMode() const {
   nPiZeros = (nPiZeros <= maxPiZeros) ? nPiZeros : maxPiZeros;
   return static_cast<PFTau::hadronicDecayMode>(trackIndex + nPiZeros);
 }
-
-
 
 // Setting information about the isolation region
 float PFTau::isolationPFChargedHadrCandsPtSum() const {return isolationPFChargedHadrCandsPtSum_;}
@@ -236,18 +240,16 @@ bool  PFTau::muonDecision() const {return muonDecision_;}
 void PFTau::setCaloComp(const float& x) {caloComp_ = x;}
 void PFTau::setSegComp (const float& x) {segComp_  = x;}
 void PFTau::setMuonDecision(const bool& x) {muonDecision_ = x;}
-//
-
 
 CandidatePtr PFTau::sourceCandidatePtr( size_type i ) const {
-    if( i!=0 ) return CandidatePtr();
-    return  refToPtr( jetRef() );
+    if ( i!=0 ) return CandidatePtr();
+    return refToPtr(jetRef());
 }
 
 
 bool PFTau::overlap(const Candidate& theCand) const {
-    const RecoCandidate* theRecoCand=dynamic_cast<const RecoCandidate *>(&theCand);
-    return (theRecoCand!=0 && (checkOverlap(track(),theRecoCand->track())));
+    const RecoCandidate* theRecoCand = dynamic_cast<const RecoCandidate *>(&theCand);
+    return (theRecoCand!=0 && (checkOverlap(track(), theRecoCand->track())));
 }
 
 void PFTau::dump(std::ostream& out) const {
