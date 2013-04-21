@@ -1,9 +1,12 @@
 #ifndef DataFormats_TauReco_PFRecoTauChargedHadronFwd_h
 #define DataFormats_TauReco_PFRecoTauChargedHadronFwd_h
-#include <vector>
+
 #include "DataFormats/Common/interface/Ref.h"
 #include "DataFormats/Common/interface/RefProd.h"
 #include "DataFormats/Common/interface/RefVector.h"
+#include "DataFormats/Common/interface/Ptr.h"
+
+#include <vector>
 
 namespace reco {
   class PFRecoTauChargedHadron;
