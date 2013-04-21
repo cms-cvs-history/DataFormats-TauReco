@@ -65,6 +65,7 @@ class PFTau : public BaseTau {
     const PFTauTagInfoRef& pfTauTagInfoRef() const;
     void setpfTauTagInfoRef(const PFTauTagInfoRef);
 
+    PFRecoTauChargedHadronRef leadTauChargedHadronCandidate() const;
     const PFCandidatePtr& leadPFChargedHadrCand() const;
     const PFCandidatePtr& leadPFNeutralCand() const;
     //Can be either the charged or the neutral one
@@ -144,7 +145,6 @@ class PFTau : public BaseTau {
     const std::vector<PFRecoTauChargedHadron>& isolationTauChargedHadronCandidates() const;
     void setIsolationTauChargedHadronCandidates(const std::vector<PFRecoTauChargedHadron>&);
     void setIsolationTauChargedHadronCandidatesRefs(const PFRecoTauChargedHadronRefVector&);
-
 
     /// Retrieve the identified hadronic decay mode according to the number of
     /// charged and piZero candidates in the signal cone
