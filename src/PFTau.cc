@@ -180,15 +180,15 @@ PFTau::hadronicDecayMode PFTau::decayMode() const {
   unsigned int nCharged = signalTauChargedHadronCandidates().size();
   unsigned int nPiZeros = signalPiZeroCandidates().size();
   // If no tracks exist, this is definitely not a tau!
-  if(!nCharged) return kNull;
+  if ( !nCharged ) return kNull;
   // Find the maximum number of PiZeros our parameterization can hold
   const unsigned int maxPiZeros = kOneProngNPiZero;
   // Determine our track index
-  unsigned int trackIndex = (nCharged-1)*(maxPiZeros+1);
+  unsigned int trackIndex = (nCharged - 1)*(maxPiZeros + 1);
   // Check if we handle the given number of tracks
-  if(trackIndex >= kRareDecayMode) return kRareDecayMode;
+  if ( trackIndex >= kRareDecayMode ) return kRareDecayMode;
   
-  nPiZeros = (nPiZeros <= maxPiZeros) ? nPiZeros : maxPiZeros;
+  nPiZeros = ( nPiZeros <= maxPiZeros ) ? nPiZeros : maxPiZeros;
   return static_cast<PFTau::hadronicDecayMode>(trackIndex + nPiZeros);
 }
 
