@@ -100,16 +100,17 @@ void PFRecoTauChargedHadron::print(std::ostream& stream) const
 {
   stream << " Pt = " << this->pt() << ", eta = " << this->eta() << ", phi = " << this->phi() << " (mass = " << this->mass() << ")" << std::endl;
   stream << " charge = " << this->charge() << " (pdgId = " << this->pdgId() << ")" << std::endl;
-  stream << "charged PFCandidate: ";
+  stream << "charged PFCandidate";
   if ( chargedPFCandidate_.isNonnull() ) {
-    stream << "Pt = " << chargedPFCandidate_->pt() << ", eta = " << chargedPFCandidate_->eta() << ", phi = " << chargedPFCandidate_->phi() 
+    stream << " (" << chargedPFCandidate_.id() << ":" << chargedPFCandidate_.key() << "):"
+	   << " Pt = " << chargedPFCandidate_->pt() << ", eta = " << chargedPFCandidate_->eta() << ", phi = " << chargedPFCandidate_->phi() 
 	   << " (type = " << getPFCandidateType(chargedPFCandidate_->particleId()) << ")" << std::endl;
   } else {
-    stream << "N/A" << std::endl;
+    stream << ": N/A" << std::endl;
   }
   stream << "reco::Track: ";
   if ( track_.isNonnull() ) {
-    stream << "Pt = " << track_->pt() << ", eta = " << track_->eta() << ", phi = " << track_->phi() << std::endl;
+    stream << "Pt = " << track_->pt() << " +/- " << track_->ptError() << ", eta = " << track_->eta() << ", phi = " << track_->phi() << std::endl;
   } else {
     stream << "N/A" << std::endl;
   }
@@ -119,7 +120,8 @@ void PFRecoTauChargedHadron::print(std::ostream& stream) const
     int idx = 0;
     for ( std::vector<PFCandidatePtr>::const_iterator neutralPFCandidate = neutralPFCandidates_.begin();
 	  neutralPFCandidate != neutralPFCandidates_.end(); ++neutralPFCandidate ) {
-      stream << " #" << idx << ": Pt = " << (*neutralPFCandidate)->pt() << ", eta = " << (*neutralPFCandidate)->eta() << ", phi = " << (*neutralPFCandidate)->phi() 
+      stream << " #" << idx << " (" << neutralPFCandidate->id() << ":" << neutralPFCandidate->key() << "):"
+	     << " Pt = " << (*neutralPFCandidate)->pt() << ", eta = " << (*neutralPFCandidate)->eta() << ", phi = " << (*neutralPFCandidate)->phi() 
 	     << " (type = " << getPFCandidateType((*neutralPFCandidate)->particleId()) << ")" << std::endl;
       ++idx;
     }
@@ -127,7 +129,8 @@ void PFRecoTauChargedHadron::print(std::ostream& stream) const
     stream << " ";
     stream << "N/A" << std::endl;
   }
-  stream << "position@ECAL entrance: x = " << this->positionAtECALEntrance().x() << ", y = " << this->positionAtECALEntrance().y() << ", z = " << this->positionAtECALEntrance().z() << std::endl;
+  stream << "position@ECAL entrance: x = " << this->positionAtECALEntrance().x() << ", y = " << this->positionAtECALEntrance().y() << ", z = " << this->positionAtECALEntrance().z() 
+	 << " (eta = " << this->positionAtECALEntrance().eta() << ", phi = " << this->positionAtECALEntrance().phi() << ")" << std::endl;
   std::string algo_string = "undefined";
   if      ( algo_ == kChargedPFCandidate ) algo_string = "chargedPFCandidate";
   else if ( algo_ == kTrack              ) algo_string = "Track";
