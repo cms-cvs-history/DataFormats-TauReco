@@ -23,13 +23,12 @@
 #include <iostream>
 #include <limits>
 
+namespace reco { namespace tau {
+  class RecoTauConstructor;
+  class PFRecoTauEnergyAlgorithmPlugin;
+}} 
 
 namespace reco {
-
-namespace tau {
-// Forward declaration
-class RecoTauConstructor;
-}
 
 class PFTau : public BaseTau {
   public:
@@ -194,7 +193,9 @@ class PFTau : public BaseTau {
     void dump(std::ostream& out=std::cout) const;
 
   private:
-    friend class reco::tau::RecoTauConstructor;
+    friend class tau::RecoTauConstructor;
+    friend class tau::PFRecoTauEnergyAlgorithmPlugin;
+
     // check overlap with another candidate
     virtual bool overlap(const Candidate&) const;
 
@@ -253,10 +254,10 @@ class PFTau : public BaseTau {
     // Association of PF candidates into PFRecoTauChargedHadrons (transient)
     mutable std::vector<reco::PFRecoTauChargedHadron> signalTauChargedHadronCandidates_;
     mutable std::vector<reco::PFRecoTauChargedHadron> isolationTauChargedHadronCandidates_;
-
 };
 
 std::ostream & operator<<(std::ostream& out, const PFTau& c);
 
-}
+} // end namespace reco
+
 #endif
