@@ -66,13 +66,13 @@ class PFRecoTauChargedHadron : public CompositePtrCandidate
 
   void print(std::ostream& stream = std::cout) const;
     
+ private:
   friend class tau::PFRecoTauChargedHadronFromPFCandidatePlugin;
   friend class tau::PFRecoTauChargedHadronFromTrackPlugin;
   friend class tau::RecoTauConstructor;
   friend class tau::PFRecoTauEnergyAlgorithmPlugin;
   friend class ::PFRecoTauChargedHadronProducer;
 
- private:
   PFRecoTauChargedHadronAlgorithm algo_;
 
   PFCandidatePtr chargedPFCandidate_;

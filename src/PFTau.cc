@@ -140,10 +140,10 @@ PFRecoTauChargedHadronRef PFTau::leadTauChargedHadronCandidate() const {
 
 const std::vector<PFRecoTauChargedHadron>& PFTau::signalTauChargedHadronCandidates() const {
   // Check if the signal tau charged hadrons are already filled
-  if (signalTauChargedHadronCandidates_.size() < signalTauChargedHadronCandidatesRefs_.size()) {
+  if ( signalTauChargedHadronCandidates_.size() < signalTauChargedHadronCandidatesRefs_.size() ) {
     // Fill them from the refs
-    for (size_t i = 0; i < signalTauChargedHadronCandidatesRefs_.size(); ++i) {
-	signalTauChargedHadronCandidates_.push_back(*signalTauChargedHadronCandidatesRefs_[i]);
+    for ( size_t i = 0; i < signalTauChargedHadronCandidatesRefs_.size(); ++i ) {
+      signalTauChargedHadronCandidates_.push_back(*signalTauChargedHadronCandidatesRefs_[i]);
     }
   }
   return signalTauChargedHadronCandidates_;
@@ -159,9 +159,9 @@ void PFTau::setSignalTauChargedHadronCandidatesRefs(const PFRecoTauChargedHadron
 
 const std::vector<PFRecoTauChargedHadron>& PFTau::isolationTauChargedHadronCandidates() const {
   // Check if the isolation tau charged hadrons are already filled
-  if (isolationTauChargedHadronCandidates_.size() < isolationTauChargedHadronCandidatesRefs_.size()) {
+  if ( isolationTauChargedHadronCandidates_.size() < isolationTauChargedHadronCandidatesRefs_.size() ) {
     // Fill them from the refs
-    for (size_t i = 0; i < isolationTauChargedHadronCandidatesRefs_.size(); ++i) {
+    for ( size_t i = 0; i < isolationTauChargedHadronCandidatesRefs_.size(); ++i ) {
       isolationTauChargedHadronCandidates_.push_back(*isolationTauChargedHadronCandidatesRefs_[i]);
     }
   }
