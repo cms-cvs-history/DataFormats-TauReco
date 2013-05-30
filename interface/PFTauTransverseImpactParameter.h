@@ -18,42 +18,46 @@
 #include "TVector3.h"
 
 namespace reco {
-   class PFTauTransverseImpactParameter {
-     enum { dimension = 3 };
-     enum { covarianceSize = dimension * ( dimension + 1 ) / 2 };
-     typedef math::Error<dimension>::type CovMatrix;
-     typedef math::XYZPoint Point;
+  class PFTauTransverseImpactParameter 
+  {    
+    enum { dimension = 3 };
+    enum { covarianceSize = dimension * ( dimension + 1 ) / 2 };
+    typedef math::Error<dimension>::type CovMatrix;
+    typedef math::XYZPoint Point;
 
-   public:
-      PFTauTransverseImpactParameter(){}
-      /// constructor from values
-      PFTauTransverseImpactParameter(Point doca,double thedxy, double thedxy_error,VertexRef PV);
-      PFTauTransverseImpactParameter(Point doca,double thedxy, double thedxy_error,VertexRef PV,Point theFlightLength,CovMatrix theFlightLenghtCov,VertexRef SV);
+  public:
+    PFTauTransverseImpactParameter(){}
+    /// constructor from values
+    PFTauTransverseImpactParameter(const Point&, double, double, const VertexRef&);
+    PFTauTransverseImpactParameter(const Point&, double, double, const VertexRef&, const Point&, const CovMatrix&, const VertexRef&);
+      
+    virtual ~PFTauTransverseImpactParameter(){}
+    PFTauTransverseImpactParameter* clone() const;
 
-      virtual ~PFTauTransverseImpactParameter(){}
-      PFTauTransverseImpactParameter* clone() const;
-
-      Point     DOCA(){return doca_;}
-      double    dxy(){return dxy_;}
-      double    dxy_error(){return dxy_error_;}
-      double    dxy_Sig(){if(dxy_error_!=0)return dxy_/dxy_error_;return 0;}
-      VertexRef PrimaryVertex(){return PV_;}
-      bool      hasSecondaryVertex(){return hasSV_;}
-      TVector3  FlightLength();
-      double    FlightLengthSig();
-      CovMatrix FlightLenghtCov(){return FlightLenghtCov_;}
-      VertexRef SecondaryVertex(){return SV_;}
-
-   private:
-      Point      doca_;
-      double     dxy_;
-      double     dxy_error_;
-      VertexRef  PV_;
-      bool       hasSV_;
-      Point      FlightLength_;
-      CovMatrix  FlightLenghtCov_;
-      VertexRef  SV_;
-
+    const Point& DOCA() const { return doca_; }
+    double dxy() const { return dxy_; }
+    double dxy_error() const { return dxy_error_; }
+    double dxy_Sig() const 
+    {
+      if ( dxy_error_ != 0 ) return dxy_/dxy_error_; 
+      else return 0; 
+    }
+    const VertexRef& PrimaryVertex() const { return PV_; }
+    bool hasSecondaryVertex() const { return hasSV_; }
+    TVector3 FlightLength() const;
+    double FlightLengthSig() const;
+    const CovMatrix& FlightLenghtCov() const { return FlightLenghtCov_; }
+    const VertexRef& SecondaryVertex() const { return SV_; }
+    
+  private:
+    Point     doca_;
+    double    dxy_;
+    double    dxy_error_;
+    VertexRef PV_;
+    bool      hasSV_;
+    Point     FlightLength_;
+    CovMatrix FlightLenghtCov_;
+    VertexRef SV_;    
    };
 }
 
