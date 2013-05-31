@@ -23,7 +23,7 @@ namespace reco {
   typedef edm::Ref<PFTauVertexAssociation> PFTauVertexAssociationRef;
   typedef edm::RefProd<PFTauVertexAssociation> PFTauVertexAssociationRefProd;
   typedef edm::RefVector<PFTauVertexAssociation> PFTauVertexAssociationRefVector;
-  //std::vector<std::vector<reco::Vertex> >
+  // std::vector<std::vector<reco::Vertex> >
   typedef edm::AssociationVector<PFTauRefProd,  std::vector<std::vector<reco::VertexRef> > > PFTauVertexVAssociation;
   typedef PFTauVertexVAssociation::value_type PFTauVertexVAssociationVT;
   typedef edm::Ref<PFTauVertexVAssociation> PFTauVertexVAssociationRef;
