@@ -17,46 +17,50 @@
 #include "DataFormats/VertexReco/interface/VertexFwd.h"
 #include "TVector3.h"
 
-namespace reco {
-   class PFTauTransverseImpactParameter {
-     enum { dimension = 3 };
-     enum { covarianceSize = dimension * ( dimension + 1 ) / 2 };
-     typedef math::Error<dimension>::type CovMatrix;
-     typedef math::XYZPoint Point;
+namespace reco 
+{
+  class PFTauTransverseImpactParameter 
+  {
+    enum { dimension = 3 };
+    enum { covarianceSize = dimension * ( dimension + 1 ) / 2 };
 
    public:
-      PFTauTransverseImpactParameter(){}
-      /// constructor from values
-      PFTauTransverseImpactParameter(Point pca,double thedxy, double thedxy_error,VertexRef PV);
-      PFTauTransverseImpactParameter(Point pca,double thedxy, double thedxy_error,VertexRef PV,Point theFlightLength,
-				     VertexRef SV);
+    typedef math::Error<dimension>::type CovMatrix;
+    typedef math::XYZPoint Point;
+    typedef math::XYZVector Vector;
 
-      virtual ~PFTauTransverseImpactParameter(){}
-      PFTauTransverseImpactParameter* clone() const;
+    PFTauTransverseImpactParameter(){}
+    /// constructor from values
+    PFTauTransverseImpactParameter(const Point&, double, double, const VertexRef&);
+    PFTauTransverseImpactParameter(const Point&, double, double, const VertexRef&, const Point&, const VertexRef&);
+      
+    virtual ~PFTauTransverseImpactParameter(){}
+    PFTauTransverseImpactParameter* clone() const;
 
-      Point     PCA(){return pca_;}
-      double    dxy(){return dxy_;}
-      double    dxy_error(){return dxy_error_;}
-      double    dxy_Sig(){if(dxy_error_!=0)return dxy_/dxy_error_;return 0;}
-      VertexRef PrimaryVertex(){return PV_;}
-      CovMatrix PrimaryVertexCov();
-      bool      hasSecondaryVertex(){return hasSV_;}
-      TVector3  FlightLength();
-      double    FlightLengthSig();
-      CovMatrix FlightLenghtCov();
-      VertexRef SecondaryVertex(){return SV_;}
-      CovMatrix SecondaryVertexCov();
-
-   private:
-      Point      pca_;
-      double     dxy_;
-      double     dxy_error_;
-      VertexRef  PV_;
-      bool       hasSV_;
-      Point      FlightLength_;
-      VertexRef  SV_;
-
-   };
+    const Point&     dxy_PCA() const { return pca_; }
+    double           dxy() const { return dxy_; }
+    double           dxy_error() const { return dxy_error_; }
+    double           dxy_Sig() const { return ( dxy_error_ != 0 ) ? (dxy_/dxy_error_) : 0.; }
+    const VertexRef& primaryVertex() const { return PV_; }
+    Point            primaryVertexPos() const; 
+    CovMatrix        primaryVertexCov() const;
+    bool             hasSecondaryVertex() const { return hasSV_; }
+    const Vector&    flightLength() const;
+    double           flightLengthSig() const;
+    CovMatrix        flightLengthCov() const;
+    const VertexRef& secondaryVertex() const { return SV_; }
+    Point            secondaryVertexPos() const;
+    CovMatrix        secondaryVertexCov() const;
+        
+  private:
+    Point      pca_;
+    double     dxy_;
+    double     dxy_error_;
+    VertexRef  PV_;
+    bool       hasSV_;
+    Vector     FlightLength_;
+    VertexRef  SV_;    
+  };
 }
 
 #endif
