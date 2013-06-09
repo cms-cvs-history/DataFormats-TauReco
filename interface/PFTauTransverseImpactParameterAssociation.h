@@ -2,6 +2,7 @@
 #define DataFormats_TauReco_PFTauTransverseImpactParameterAssociation_h
 
 #include "DataFormats/TauReco/interface/PFTauTransverseImpactParameter.h"
+#include "DataFormats/TauReco/interface/PFTauTransverseImpactParameterFwd.h"
 #include "DataFormats/Common/interface/Association.h"
 #include "DataFormats/Common/interface/AssociationVector.h"
 #include "DataFormats/Common/interface/RefProd.h"
@@ -12,7 +13,7 @@
 
 namespace reco {
   // PFTauTransverseImpactParameter
-  typedef edm::AssociationVector<PFTauRefProd, std::vector<reco::PFTauTransverseImpactParameter> > PFTauTIPAssociation;
+  typedef edm::AssociationVector<PFTauRefProd, std::vector<reco::PFTauTransverseImpactParameterRef> > PFTauTIPAssociation;
   typedef PFTauTIPAssociation::value_type PFTauTIPAssociationVT;  
   typedef edm::Ref<PFTauTIPAssociation> PFTauTIPAssociationRef;  
   typedef edm::RefProd<PFTauTIPAssociation> PFTauTIPAssociationRefProd;  

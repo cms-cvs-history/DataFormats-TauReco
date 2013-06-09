@@ -5,8 +5,12 @@
  * 
  * Stores information on the impact paramters and flight length of the hadronic decay of a tau lepton
  *
-
  * author: Ian M. Nugent
+ * This work is based on the impact parameter work by Rosamaria Venditti and reconstructing the 3 prong taus.
+ * The idea of the fully reconstructing the tau using a kinematic fit comes from
+ * Lars Perchalla and Philip Sauerland Theses under Achim Stahl supervision. This
+ * work was continued by Ian M. Nugent and Vladimir Cherepanov.
+ * Thanks goes to Christian Veelken and Evan Klose Friis for their help and suggestions. 
  */
 
 #include "FWCore/MessageLogger/interface/MessageLogger.h"
@@ -33,10 +37,10 @@ namespace reco
     /// constructor from values
     PFTauTransverseImpactParameter(const Point&, double, double, const VertexRef&);
     PFTauTransverseImpactParameter(const Point&, double, double, const VertexRef&, const Point&, const VertexRef&);
-      
+    
     virtual ~PFTauTransverseImpactParameter(){}
     PFTauTransverseImpactParameter* clone() const;
-
+    
     const Point&     dxy_PCA() const { return pca_; }
     double           dxy() const { return dxy_; }
     double           dxy_error() const { return dxy_error_; }
@@ -51,7 +55,7 @@ namespace reco
     const VertexRef& secondaryVertex() const { return SV_; }
     Point            secondaryVertexPos() const;
     CovMatrix        secondaryVertexCov() const;
-        
+    
   private:
     Point      pca_;
     double     dxy_;

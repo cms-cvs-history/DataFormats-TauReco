@@ -51,8 +51,7 @@ const PFTauTransverseImpactParameter::Vector& PFTauTransverseImpactParameter::fl
   return FlightLength_;
 }
 
-double PFTauTransverseImpactParameter::flightLengthSig() const
-{
+double PFTauTransverseImpactParameter::flightLengthSig() const{
   if ( hasSV_ ) {
     VertexDistance3D vtxdist;
     return vtxdist.distance(*PV_, *SV_).significance(); // transforms using the jacobian then computes distance/uncertainty 
@@ -60,14 +59,12 @@ double PFTauTransverseImpactParameter::flightLengthSig() const
   return -1.;
 }
 
-PFTauTransverseImpactParameter::Point PFTauTransverseImpactParameter::secondaryVertexPos() const 
-{ 
+PFTauTransverseImpactParameter::Point PFTauTransverseImpactParameter::secondaryVertexPos() const{ 
   if ( hasSV_ ) return SV_->position(); 
   else return PFTauTransverseImpactParameter::Point(0.,0.,0.);
 }
 
-PFTauTransverseImpactParameter::CovMatrix PFTauTransverseImpactParameter::secondaryVertexCov() const
-{
+PFTauTransverseImpactParameter::CovMatrix PFTauTransverseImpactParameter::secondaryVertexCov() const{
   CovMatrix cov;
   if ( !hasSV_ ) return cov;
   for ( int i = 0; i < dimension; ++i ) {
@@ -78,8 +75,7 @@ PFTauTransverseImpactParameter::CovMatrix PFTauTransverseImpactParameter::second
   return cov;
 }
 
-PFTauTransverseImpactParameter::CovMatrix PFTauTransverseImpactParameter::flightLengthCov() const
-{
+PFTauTransverseImpactParameter::CovMatrix PFTauTransverseImpactParameter::flightLengthCov() const{
   CovMatrix cov;
   const CovMatrix& sv = secondaryVertexCov();
   const CovMatrix& pv = primaryVertexCov();

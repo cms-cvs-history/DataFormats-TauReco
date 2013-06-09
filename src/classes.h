@@ -27,9 +27,11 @@
 #include "DataFormats/TauReco/interface/PFJetChargedHadronAssociation.h"
 #include "DataFormats/TauReco/interface/PFTauTransverseImpactParameterAssociation.h"
 #include "DataFormats/TauReco/interface/PFTauTransverseImpactParameterFwd.h"
-
+#include "DataFormats/TauReco/interface/PFTau3ProngSummaryFwd.h"
+#include "DataFormats/TauReco/interface/PFTau3ProngSummaryAssociation.h"
 #include <vector>
 #include <map>
+#include "TLorentzVector.h"
 
 namespace {
   struct dictionary {
@@ -210,14 +212,36 @@ namespace {
     edm::PtrVector<reco::BaseTau>	 ptrv_t;
 
     reco::PFTauTransverseImpactParameter                                                        pftautip_o;
-    std::vector<reco::PFTauTransverseImpactParameter>                                           pftautip_v;
-    edm::Wrapper<std::vector<reco::PFTauTransverseImpactParameter> >                            pftautip_w;
-    edm::Ref<std::vector<reco::PFTauTransverseImpactParameter> >                                pftautip_r;
-    edm::RefProd<std::vector<reco::PFTauTransverseImpactParameter> >                            pftautip_rp;
-    edm::RefVector<std::vector<reco::PFTauTransverseImpactParameter> >                          pftautip_rv;
-    edm::reftobase::Holder<reco::PFTauTransverseImpactParameter,reco::PFTauTransverseImpactParameterRef>    pftautip_rb;
+    std::vector<reco::PFTauTransverseImpactParameter>                                           pftautip_ov;
+    edm::Wrapper<std::vector<reco::PFTauTransverseImpactParameter> >                            pftautip_vw;
+    edm::Ref<std::vector<reco::PFTauTransverseImpactParameter> >                                pftautip_vr;
+    edm::RefProd<std::vector<reco::PFTauTransverseImpactParameter> >                            pftautip_vrp;
+    edm::RefVector<std::vector<reco::PFTauTransverseImpactParameter> >                          pftautip_vrv;
+    edm::reftobase::Holder<reco::PFTauTransverseImpactParameter,edm::Ref<std::vector<reco::PFTauTransverseImpactParameter> > >    pftautip_rb;
     edm::Association<std::vector<reco::PFTauTransverseImpactParameter> >                        pftautip_assoc_v;
     edm::Wrapper<edm::Association<std::vector<reco::PFTauTransverseImpactParameter> > >         pftautip_assoc_v_wrapper;
+
+
+    reco::PFTauTransverseImpactParameterCollection                                                        pftautip_oc;
+    std::vector<reco::PFTauTransverseImpactParameterCollection>                                           pftautip_vc;
+    edm::Wrapper<std::vector<reco::PFTauTransverseImpactParameterCollection> >                            pftautip_vwc;
+    edm::Ref<std::vector<reco::PFTauTransverseImpactParameterCollection> >                                pftautip_vrc;
+    edm::RefProd<std::vector<reco::PFTauTransverseImpactParameterCollection> >                            pftautip_vrpc;
+    edm::RefVector<std::vector<reco::PFTauTransverseImpactParameterCollection> >                          pftautip_vrvc;
+    edm::reftobase::Holder<reco::PFTauTransverseImpactParameterCollection,edm::Ref<std::vector<reco::PFTauTransverseImpactParameterCollection> > >    pftautip_rbc;
+    edm::Association<std::vector<reco::PFTauTransverseImpactParameterCollection> >                        pftautip_assoc_vc;
+    edm::Wrapper<edm::Association<std::vector<reco::PFTauTransverseImpactParameterCollection> > >         pftautip_assoc_vc_wrapper;
+
+
+    reco::PFTauTransverseImpactParameterRef                                                        pftautip_or;
+    std::vector<reco::PFTauTransverseImpactParameterRef>                                           pftautip_vrb;
+    edm::Wrapper<std::vector<reco::PFTauTransverseImpactParameterRef> >                            pftautip_vwr;
+    edm::Ref<std::vector<reco::PFTauTransverseImpactParameterRef> >                                pftautip_vrr;
+    edm::RefProd<std::vector<reco::PFTauTransverseImpactParameterRef> >                            pftautip_vrpr;
+    edm::RefVector<std::vector<reco::PFTauTransverseImpactParameterRef> >                          pftautip_vrvr;
+    edm::reftobase::Holder<reco::PFTauTransverseImpactParameterRef,edm::Ref<std::vector<reco::PFTauTransverseImpactParameterRef> > >    pftautip_rbr;
+    edm::Association<std::vector<reco::PFTauTransverseImpactParameterRef> >                        pftautip_assoc_vr;
+    edm::Wrapper<edm::Association<std::vector<reco::PFTauTransverseImpactParameterRef> > >         pftautip_assoc_vr_wrapper;
 
     std::vector<reco::VertexRef>                                                          pftauvertex_o;
     edm::Wrapper<std::vector<reco::VertexRef> >                                           pftauvertex_w;
@@ -243,8 +267,8 @@ namespace {
     reco::PFTauTIPAssociationRefVector                pftautipass_rv;
     edm::Wrapper<reco::PFTauTIPAssociation>           pftautipass_w;
 
-    std::pair<reco::PFTauRef, std::vector<reco::PFTauTransverseImpactParameter> >                pftaupairtip_o;
-    std::vector<std::pair<reco::PFTauRef, std::vector<reco::PFTauTransverseImpactParameter> > >  pftaupairtip_v;
+    std::pair<reco::PFTauRef, std::vector<reco::PFTauTransverseImpactParameterRef> >                pftaupairtip_o;
+    std::vector<std::pair<reco::PFTauRef, std::vector<reco::PFTauTransverseImpactParameterRef> > >  pftaupairtip_v;
 
     reco::PFTauVertexAssociation                      pftauvertexass_o;
     reco::PFTauVertexAssociationRef                   pftauvertexass_r;
@@ -261,6 +285,50 @@ namespace {
     edm::Wrapper<reco::PFTauVertexVAssociation>       pftauvertexvass_w;
     std::pair<reco::PFTauRef, std::vector<std::vector<reco::VertexRef> > >                pftaupairvertexv_o;
     std::vector<std::pair<reco::PFTauRef, std::vector<std::vector<reco::VertexRef> > > >  pftaupairvertexv_v;
+
+
+    reco::PFTau3ProngSummary                                                        pftau3prong_o;
+    std::vector<reco::PFTau3ProngSummary>                                           pftau3prong_v;
+    edm::Wrapper<std::vector<reco::PFTau3ProngSummary> >                            pftau3prong_w;
+    edm::Ref<std::vector<reco::PFTau3ProngSummary> >                                pftau3prong_r;
+    edm::RefProd<std::vector<reco::PFTau3ProngSummary> >                            pftau3prong_rp;
+    edm::RefVector<std::vector<reco::PFTau3ProngSummary> >                          pftau3prong_rv;
+    edm::reftobase::Holder<reco::PFTau3ProngSummary,edm::Ref<std::vector<reco::PFTau3ProngSummary> > >    pftau3prong_rb;
+    edm::Association<std::vector<reco::PFTau3ProngSummary> >                        pftau3prong_assoc_v;
+    edm::Wrapper<edm::Association<std::vector<reco::PFTau3ProngSummary> > >         pftau3prong_assoc_v_wrapper;
+
+
+    reco::PFTau3ProngSummaryCollection                                                        pftau3prong_oc;
+    std::vector<reco::PFTau3ProngSummaryCollection>                                           pftau3prong_vc;
+    edm::Wrapper<std::vector<reco::PFTau3ProngSummaryCollection> >                            pftau3prong_wc;
+    edm::Ref<std::vector<reco::PFTau3ProngSummaryCollection> >                                pftau3prong_rc;
+    edm::RefProd<std::vector<reco::PFTau3ProngSummaryCollection> >                            pftau3prong_rpc;
+    edm::RefVector<std::vector<reco::PFTau3ProngSummaryCollection> >                          pftau3prong_rvc;
+    edm::reftobase::Holder<reco::PFTau3ProngSummaryCollection,edm::Ref<std::vector<reco::PFTau3ProngSummaryCollection> > >    pftau3prong_rbc;
+    edm::Association<std::vector<reco::PFTau3ProngSummaryCollection> >                        pftau3prong_assoc_vc;
+    edm::Wrapper<edm::Association<std::vector<reco::PFTau3ProngSummaryCollection> > >         pftau3prong_assoc_vc_wrapper;
+
+
+    reco::PFTau3ProngSummaryRef                                                        pftau3prong_or;
+    std::vector<reco::PFTau3ProngSummaryRef>                                           pftau3prong_vr;
+    edm::Wrapper<std::vector<reco::PFTau3ProngSummaryRef> >                            pftau3prong_wr;
+    edm::Ref<std::vector<reco::PFTau3ProngSummaryRef> >                                pftau3prong_rr;
+    edm::RefProd<std::vector<reco::PFTau3ProngSummaryRef> >                            pftau3prong_rpr;
+    edm::RefVector<std::vector<reco::PFTau3ProngSummaryRef> >                          pftau3prong_rvr;
+    edm::reftobase::Holder<reco::PFTau3ProngSummaryRef,edm::Ref<std::vector<reco::PFTau3ProngSummaryRef> > >    pftau3prong_rbr;
+    edm::Association<std::vector<reco::PFTau3ProngSummaryRef> >                        pftau3prong_assoc_vr;
+    edm::Wrapper<edm::Association<std::vector<reco::PFTau3ProngSummaryRef> > >         pftau3prong_assoc_vr_wrapper;
+
+    reco::PFTau3ProngSumAssociation                         pftau3prongass_o;
+    reco::PFTau3ProngSumAssociationRef                      pftau3prongass_r;
+    reco::PFTau3ProngSumAssociationRefProd                  pftau3prongass_rp;
+    reco::PFTau3ProngSumAssociationRefVector                pftau3prongass_rv;
+    edm::Wrapper<reco::PFTau3ProngSumAssociation>           pftau3prongass_w;
+
+    std::pair<reco::PFTauRef, std::vector<reco::PFTau3ProngSummaryRef> >                pftaupair3prong_o;
+    std::vector<std::pair<reco::PFTauRef, std::vector<reco::PFTau3ProngSummaryRef> > >  pftaupair3prong_v;
+
+    std::vector<std::vector<TLorentzVector> > vlv_o;
 
   };
 }
